@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue CND</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/normalize.css">
+</head>
+
+<body>
+  <div id="app" class="app">
+
+    <form v-on:submit="addProduct">
+      <input type="text" v-model="name" placeholder="Название товара">
+      <input type="number" v-model="price" placeholder="Стоимость">
+      <input type="number" v-model="quantity" placeholder="Кол-во">
+      <button>Добавить товар</button>
+    </form>
+    <ol>
+      <transition-group name="list">
+        <li v-for="item in sortOrder" :key="item.id">
+          {{ item.name}},
+          <strong>Стоимость: </strong> {{ item.price}},
+          <strong>Кол-во: </strong> {{ item.quantity}}
+        </li>
+      </transition-group>
+    </ol>
+    <div v-if="totalPrice>0">
+      Стоимость покупки: <strong>{{totalPrice}}</strong>
+    </div>
+  </div>
+
+  <script src="./js/main.js"></script>
+</body>
+
+</html>
